@@ -35,7 +35,7 @@ This project is ideal for learning about file-based databases, integrating custo
 - **Go** - Database engine and command handling.
 - **Node.js** - Backend framework for rate limiter and chat application.
 - **Express** - Web server framework used in the rate limiter and chat app.
-- **Redis** - CLI for testing and interacting with the rate limiter.
+- **Redis-CLI** - CLI for testing and interacting with the rate limiter.
 
 ---
 
@@ -53,16 +53,52 @@ To run this project, you need the following software installed:
 
 *Note: All commands should be written in **uppercase**.*
 
-1. **CONFIGGET** - Retrieves the database configuration settings.
-2. **DELETE** - Deletes a specified key-value pair from the database.
-3. **ECHO** - Outputs a provided message to verify database connectivity.
-4. **INCR** - Increments a numeric value by one; initializes to 0 if the key does not exist.
-5. **KEYS** - Lists all keys currently stored in the database.
-6. **LIST** - Retrieves all items stored in a specified list.
-7. **LOAD** - Loads data from a backup file into the database.
-8. **MULTI** - Starts a transaction block for atomic command execution.
-9. **SAVE** - Saves the current database state to a file for persistence.
-10. **SETGET** - Sets a value for a specified key and retrieves it immediately.
+1. **PING** - Returns PONG to confirm the connection is active.
+
+2. **ECHO** - Outputs the message provided.
+
+3. **SET** - Sets the given key-value pair in the database.
+
+4. **SET with Expiry** - Sets a key-value pair with an expiration time. The entry is deleted when the current time exceeds ExpiryTime.
+
+5. **GET** - Retrieves the value for the specified key, or returns an error if the key does not exist.
+
+6. **LIST** - Lists all key-value pairs stored in the database.
+
+7. **DELETE** - Deletes the specified key-value pair if it exists, otherwise returns an error.
+
+8. **KEYS** - Lists all keys matching the provided pattern, supporting wildcards (*).
+
+9. **SAVE** - Saves all data in Store to a backup JSON file (backup.json) for persistence.
+
+10. **AUTOSAVE-ON** - Enables auto-save, which saves data to the backup file every 60 seconds. The SAVE command is still manually usable in this mode.
+
+11. **AUTOSAVE-OFF** - Disables the auto-save feature.
+
+12. **LOAD** - Loads all data from the backup JSON file into the in-memory map, allowing data recovery after a server restart.
+
+13. **CONFIG GET dir** - Retrieves the directory path where the backup file (backup.json) is stored.
+
+14. **CONFIG GET dbfilename** - Provides the name of the backup file used for persistence (backup.json).
+
+
+---
+
+## Usage Example
+
+```bash
+PING                      # Returns PONG
+ECHO Hello                # Returns Hello
+SET name John             # Sets key "name" to "John"
+GET name                  # Returns "John"
+SET session abc px 5000   # Sets key "session" with value "abc" for 5 seconds
+KEYS user*                # Lists all keys that start with "user" (supports wildcards)
+LIST                      # Lists all key-value pairs in memory
+DELETE name               # Deletes the key "name" if it exists
+AUTOSAVE-ON               # Enables autosave every 60 seconds
+CONFIG GET dir            # Returns directory of backup file
+SAVE                      # Manually saves the current state
+```
 
 ---
 
