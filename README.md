@@ -144,7 +144,16 @@ The rate limiter middleware limits the number of requests allowed within a time 
    node index.js
    ```
 
-5. Access the rate limiter at `http://localhost:3000`. You can adjust the request rate and time window in the configuration.
+5. Access the rate limiter at `http://localhost:3000`. 
+
+## Configuration
+
+In `index.js`, you can adjust the following constants:
+
+```javascript
+const RATE_LIMIT = 10;  // Maximum number of requests allowed within the TIME_WINDOW
+const TIME_WINDOW = 20; // Time window in seconds within which requests are limited
+```
 
 ---
 
