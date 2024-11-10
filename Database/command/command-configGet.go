@@ -5,7 +5,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/codecrafters-io/redis-starter-go/config"
+	"LiteDB/config"
 )
 
 func HandleConfigGet(input string, c net.Conn) {

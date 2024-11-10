@@ -1,1 +1,1 @@
-{"rate_limit:::ffff:127.0.0.1":{"Value":"100","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false}}
+{"foo":{"Value":"bar","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false}}
