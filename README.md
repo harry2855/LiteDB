@@ -66,7 +66,12 @@ const TIME_WINDOW = 20; // Time window in seconds within which requests are limi
 ### Project Structure
 
 ``` php
-├── index.js # Main server code, including rate-limiting middleware and LiteDB communication ├── server.go # Go server that implements the LiteDB functionality ├── views/ # Contains EJS templates │ ├── index.ejs # Main page with a request button │ └── rate_limited.ejs # Displays a message when rate limit is exceeded ├── public/ # Static files (optional for additional frontend styling or assets)
+├── index.js # Main server code, including rate-limiting middleware and LiteDB communication
+├── server.go # Go server that implements the LiteDB functionality
+├── views/ # Contains EJS templates │
+├── index.ejs # Main page with a request button
+│ └── rate_limited.ejs # Displays a message when rate limit is exceeded
+├── public/ # Static files (optional for additional frontend styling or assets)
 
 
 
