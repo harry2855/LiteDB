@@ -91,13 +91,15 @@ PING                      # Returns PONG
 ECHO Hello                # Returns Hello
 SET name John             # Sets key "name" to "John"
 GET name                  # Returns "John"
-SET session abc px 5000   # Sets key "session" with value "abc" for 5 seconds
+SET session abc PX 5000   # Sets key "session" with value "abc" for 5 seconds
 KEYS user*                # Lists all keys that start with "user" (supports wildcards)
 LIST                      # Lists all key-value pairs in memory
 DELETE name               # Deletes the key "name" if it exists
 AUTOSAVE-ON               # Enables autosave every 60 seconds
+AUTOSAVE-OFF              # Disables autosave 
 CONFIG GET dir            # Returns directory of backup file
 SAVE                      # Manually saves the current state
+LOAD                      # Loads all data from the backup JSON file into the in-memory map
 ```
 
 ---
