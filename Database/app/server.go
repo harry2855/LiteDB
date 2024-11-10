@@ -69,8 +69,12 @@ func handleConnection(c net.Conn) {
 	for {
 		_, err := c.Read(buf)
 		if err != nil {
-			fmt.Println("Error reading: ", err.Error())
-			os.Exit(1)
+			if err.Error() == "EOF" {
+				fmt.Println("Client closed the connection")
+				return // Gracefully exit this goroutine for the current client
+			}
+			fmt.Println("Error reading:", err.Error())
+			return
 		}
 		input := strings.TrimSpace(string(buf))
 		fmt.Println("Received:", input)
