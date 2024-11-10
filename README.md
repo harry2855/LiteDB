@@ -47,7 +47,27 @@ After the LiteDB server is running, you can start the rate-limiting server by ru
 
    ```bash
    node index.js
-
+```
 This will start the server on http://localhost:3000.
-   
+
+### LiteDB Setup
+
+Ensure that you have a LiteDB server running locally on port 6379. This project communicates with LiteDB directly using raw sockets instead of a LiteDB client library.
+
+### Configuration
+
+In `index.js`, you can adjust the following constants:
+
+```javascript
+const RATE_LIMIT = 10;  // Maximum number of requests allowed within the TIME_WINDOW
+const TIME_WINDOW = 20; // Time window in seconds within which requests are limited
+```
+
+### Project Structure
+
+``` php
+├── index.js # Main server code, including rate-limiting middleware and LiteDB communication ├── server.go # Go server that implements the LiteDB functionality ├── views/ # Contains EJS templates │ ├── index.ejs # Main page with a request button │ └── rate_limited.ejs # Displays a message when rate limit is exceeded ├── public/ # Static files (optional for additional frontend styling or assets)
+
+
+
    
