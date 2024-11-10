@@ -1,78 +1,137 @@
-# LiteDB Rate Limiter
 
-LiteDB is a simple rate-limiting server built with Node.js, Express, and EJS. It limits client requests to a specified threshold within a given time window, using LiteDB for efficient storage and retrieval of request counts and timestamps. This project demonstrates basic rate-limiting techniques and dynamic EJS rendering for notifications and status updates.
+# LiteDB Project
+
+## Overview
+
+LiteDB is a lightweight, file-based NoSQL database created for easy storage and retrieval of structured data. The project is designed to be simple and flexible, with three primary components that demonstrate LiteDB's capabilities in various contexts:
+
+1. **Database** - A standalone database engine written in Go, supporting basic CRUD operations and custom commands.
+2. **Rate Limiter** - A middleware implemented in Node.js that uses LiteDB to track request counts and limit user access to resources within specified time windows.
+3. **Chat App** - A basic real-time chat application that uses LiteDB as a backend to store and retrieve chat messages.
+
+This project is ideal for learning about file-based databases, integrating custom databases with applications, and using Go and Node.js to build modular components. 
 
 ## Features
 
-- **Rate Limiting**: Restricts clients to a maximum number of requests within a defined time window.
-- **LiteDB Integration**: Uses LiteDB as a backend for fast, temporary storage of client request data.
-- **Frontend Feedback**: Provides a dynamic EJS frontend that displays a "Too many requests" message and a countdown for when clients can make new requests.
+### Database
+- **File-based storage** - Stores data in a lightweight file format, making it easy to deploy and operate without complex setup.
+- **Custom commands** - Supports commands beyond typical CRUD operations, allowing for flexible data interactions (e.g., incrementing values, transactions).
+- **Backup and restore** - Provides commands to save and load data, supporting data persistence and migration.
+  
+### Rate Limiter
+- **Request rate limiting** - Limits the frequency of requests to prevent abuse, with customizable rates and time windows.
+- **Easy integration** - Simple setup allows you to add rate limiting to any Express-based app.
+- **Real-time feedback** - Displays information about remaining requests and wait times.
 
-## Getting Started
+### Chat App
+- **Real-time messaging** - Supports real-time chat with data storage in LiteDB for easy message retrieval.
+- **Lightweight backend** - Uses LiteDB as the backend database, providing a simple setup without the need for complex database infrastructure.
+- **Scalable** - Designed to handle small-scale chat functionality, ideal for testing and learning.
 
-### Prerequisites
+---
 
-- **Node.js** (v18 or later recommended)
-- **LiteDB** server running locally (default port: 6379)
-- **Go** installed for running the LiteDB server
+## Tech Stack
 
-### Installation
+- **Go** - Database engine and command handling.
+- **Node.js** - Backend framework for rate limiter and chat application.
+- **Express** - Web server framework used in the rate limiter and chat app.
+- **Redis** - CLI for testing and interacting with the rate limiter.
 
-1. Clone the repository:
+---
+
+## Prerequisites
+
+To run this project, you need the following software installed:
+
+1. **Go** - [Download and install Go](https://go.dev/doc/install)
+2. **Node.js** - [Download and install Node.js](https://nodejs.org/)
+3. **Redis CLI** - [Install Redis CLI](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/)
+
+---
+
+## Command Syntax and Function
+
+*Note: All commands should be written in **uppercase**.*
+
+1. **CONFIGGET** - Retrieves the database configuration settings.
+2. **DELETE** - Deletes a specified key-value pair from the database.
+3. **ECHO** - Outputs a provided message to verify database connectivity.
+4. **INCR** - Increments a numeric value by one; initializes to 0 if the key does not exist.
+5. **KEYS** - Lists all keys currently stored in the database.
+6. **LIST** - Retrieves all items stored in a specified list.
+7. **LOAD** - Loads data from a backup file into the database.
+8. **MULTI** - Starts a transaction block for atomic command execution.
+9. **SAVE** - Saves the current database state to a file for persistence.
+10. **SETGET** - Sets a value for a specified key and retrieves it immediately.
+
+---
+
+## Setup Instructions
+
+### Database Setup
+
+1. **Run the LiteDB Server**  
+   - Navigate to the `database/app` directory:
+     ```bash
+     cd database/app
+     ```
+   - Start the server:
+     ```bash
+     go run server.go
+     ```
+   - This starts the LiteDB server, which will handle requests from the rate limiter and chat app.
+
+2. **Install Redis CLI**  
+   - Follow the instructions on [Redis installation page](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/) to install the Redis CLI for testing and managing rate limits.
+
+### Rate Limiter
+
+The rate limiter middleware limits the number of requests allowed within a time window. This helps prevent abuse and control server load. The rate and time window are adjustable based on application needs.
+
+#### Prerequisites
+- Ensure the LiteDB server is running as outlined above.
+
+#### Installation and Setup
+1. Clone the repository.
+2. Navigate to the rate limiter directory:
    ```bash
-   git clone https://github.com/busybrowsensei1/LiteDB.git
-2. Navigate into the project directory:
-   ```bash
-   cd LiteDB
-3. Install the dependencies for the Node.js server:
+   cd LiteDB/rate-limiter
+   ```
+3. Install dependencies:
    ```bash
    npm install
-
-### Running the LiteDB Server (server.go)
-
-LiteDB is built with Go, so to run the server, you need to start the LiteDB server separately:
-
-1. Ensure you have Go installed.
-2. Navigate to the directory containing server.go.
-3. Run the Go server:
-
-   ```bash
-   go run server.go
-
-This will start the LiteDB server. The Node.js app communicates with this server to handle rate limiting.
-
-### Running the Rate Limiter Server (index.js)
-
-After the LiteDB server is running, you can start the rate-limiting server by running:
-
+   ```
+4. Start the server:
    ```bash
    node index.js
-```
-This will start the server on http://localhost:3000.
+   ```
 
-### LiteDB Setup
+5. Access the rate limiter at `http://localhost:3000`. You can adjust the request rate and time window in the configuration.
 
-Ensure that you have a LiteDB server running locally on port 6379. This project communicates with LiteDB directly using raw sockets instead of a LiteDB client library.
+---
 
-### Configuration
+### Chat App
 
-In `index.js`, you can adjust the following constants:
+The chat app enables real-time messaging and uses LiteDB as the backend storage for messages. 
 
-```javascript
-const RATE_LIMIT = 10;  // Maximum number of requests allowed within the TIME_WINDOW
-const TIME_WINDOW = 20; // Time window in seconds within which requests are limited
-```
+#### Prerequisites
+- Ensure the LiteDB server is running.
 
-### Project Structure
+#### Installation and Setup
+1. Clone the repository if not already done.
+2. Navigate to the chat app directory:
+   ```bash
+   cd LiteDB/chatbox
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-``` php
-├── index.js # Main server code, including rate-limiting middleware and LiteDB communication
-├── server.go # Go server that implements the LiteDB functionality
-├── views/ # Contains EJS templates │
-├── index.ejs # Main page with a request button
-│ └── rate_limited.ejs # Displays a message when rate limit is exceeded
-├── public/ # Static files (optional for additional frontend styling or assets)
+The chat app should now be accessible at `http://localhost:3000`.
 
-
-
-   
+---
