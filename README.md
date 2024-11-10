@@ -109,9 +109,9 @@ LOAD                      # Loads all data from the backup JSON file into the in
 ### Database Setup
 
 1. **Run the LiteDB Server**  
-   - Navigate to the `database/app` directory:
+   - Navigate to the `Database/app` directory:
      ```bash
-     cd database/app
+     cd LiteDB/Database/app
      ```
    - Start the server:
      ```bash
@@ -159,7 +159,7 @@ The chat app enables real-time messaging and uses LiteDB as the backend storage 
 1. Clone the repository if not already done.
 2. Navigate to the chat app directory:
    ```bash
-   cd LiteDB/chatbox
+   cd LiteDB/LiteDB-chat-app
    ```
 3. Install dependencies:
    ```bash
