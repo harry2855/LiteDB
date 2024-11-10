@@ -21,3 +21,33 @@ LiteDB is a simple rate-limiting server built with Node.js, Express, and EJS. It
 1. Clone the repository:
    ```bash
    git clone https://github.com/busybrowsensei1/LiteDB.git
+2. Navigate into the project directory:
+   ```bash
+   cd LiteDB
+3. Install the dependencies for the Node.js server:
+   ```bash
+   npm install
+
+### Running the LiteDB Server (server.go)
+
+LiteDB is built with Go, so to run the server, you need to start the LiteDB server separately:
+
+1. Ensure you have Go installed.
+2. Navigate to the directory containing server.go.
+3. Run the Go server:
+
+   ```bash
+   go run server.go
+
+This will start the LiteDB server. The Node.js app communicates with this server to handle rate limiting.
+
+### Running the Rate Limiter Server (index.js)
+
+After the LiteDB server is running, you can start the rate-limiting server by running:
+
+   ```bash
+   node index.js
+
+This will start the server on http://localhost:3000.
+   
+   
