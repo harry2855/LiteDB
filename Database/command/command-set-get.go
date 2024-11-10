@@ -17,8 +17,8 @@ func HandleSet(input string, c net.Conn){
 	expiryTime := time.Time{}
 	fmt.Println("Key",key)
 	value := parts[6]
-
-	if(strings.Contains(input,"px")){
+	fmt.Println(input)
+	if(strings.Contains(input,"PX")){
 		duration,_ := strconv.Atoi(parts[10])
 		fmt.Println(duration)
 		expiryTime = time.Now().Add(time.Millisecond*time.Duration(duration))

@@ -1,1 +1,1 @@
-{"foo":{"Value":"bar","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false}}
+{"foo1":{"Value":"bar1","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false},"foo2":{"Value":"bar2","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false},"foo4":{"Value":"bar4","ExpiryTime":"0001-01-01T00:00:00Z","ExpiryTimeExists":false}}

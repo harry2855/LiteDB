@@ -1,6 +1,6 @@
 package config
 
 const(
-	RDBFilename        = "dump.rdb"
-    RDBFileStoragePath = "/var/lib/redis/"
+	RDBFilename        = "backup.json"
+    RDBFileStoragePath = "./Database"
 )
