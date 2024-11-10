@@ -146,7 +146,7 @@ The rate limiter middleware limits the number of requests allowed within a time 
 
 5. Access the rate limiter at `http://localhost:3000`. 
 
-## Configuration
+#### Configuration
 
 In `index.js`, you can adjust the following constants:
 
